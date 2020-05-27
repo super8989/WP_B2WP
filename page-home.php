@@ -1,19 +1,30 @@
 <?php
 
-/*
-  Template Name: Home Page
-*/
+  /*
+    Template Name: Home Page
+  */
 
-// Custom Fields
-$prelaunch_price    = get_post_meta( 9, 'prelaunch_price', true );
-$launch_price       = get_post_meta( 9, 'launch_price', true );
-$final_price        = get_post_meta( 9, 'final_price', true );
-$course_url         = get_post_meta( 9, 'course_url', true );
-$button_text        = get_post_meta( 9, 'button_text', true );
-$optin_text         = get_post_meta( 9, 'optin_text', true );
-$optin_button_text  = get_post_meta( 9, 'optin_button_text', true );
+  // Custom Fields
+  $prelaunch_price        = get_post_meta( 9, 'prelaunch_price', true );
+  $launch_price           = get_post_meta( 9, 'launch_price', true );
+  $final_price            = get_post_meta( 9, 'final_price', true );
+  $course_url             = get_post_meta( 9, 'course_url', true );
+  $button_text            = get_post_meta( 9, 'button_text', true );
+  $optin_text             = get_post_meta( 9, 'optin_text', true );
+  $optin_button_text      = get_post_meta( 9, 'optin_button_text', true );
 
-get_header();
+
+  // Advanced Custom Fields
+  $income_feature_image   = get_field('income_feature_image');
+  $income_section_title   = get_field('income_section_title');
+  $income_section_desc    = get_field('income_section_description');
+  $reason_1_title         = get_field('reason_1_title');
+  $reason_1_desc          = get_field('reason_1_description');
+  $reason_2_title         = get_field('reason_2_title');
+  $reason_2_desc          = get_field('reason_2_description');
+
+
+  get_header();
 ?>
 
 
@@ -81,24 +92,32 @@ get_header();
     <div class="container">
 
       <div class="section-header">
-        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-boost.png" alt="Chart">
-        <h2>How you can boost your income</h2>
+
+        <!-- If user uploaded image -->
+        <?php
+
+          if ( !empty($income_feature_image) ) {
+        ?>
+          <img src="<?php echo $income_feature_image['url']; ?>" alt="<?php echo $income_feature_image['alt'] ?>">
+          
+        <?php
+          }
+        ?>
+
+        <h2><?php echo $income_section_title; ?></h2>
 
         <p class="lead">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore cupiditate commodi atque praesentium minus
-          veniam voluptas voluptatibus ut quas. Iste.
+          <?php echo $income_section_desc; ?>
         </p>
 
         <div class="row">
           <div class="col-sm-6">
-            <h3>Make money on the side</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui quam iure recusandae hic eaque ducimus at
-              suscipit? Velit, aperiam molestias.</p>
+            <h3><?php echo $reason_1_title; ?></h3>
+            <p><?php echo $reason_1_desc; ?></p>
           </div>
           <div class="col-sm-6">
-            <h3>Create income</h3>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Aut minima eum est reiciendis? Incidunt illo
-              commodi corporis veritatis saepe? Dolores?</p>
+            <h3><?php echo $reason_2_title; ?></h3>
+            <p><?php echo $reason_2_desc; ?></p>
           </div>
 
         </div>
