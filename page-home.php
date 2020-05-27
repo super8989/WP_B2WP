@@ -23,6 +23,10 @@
   $reason_2_title         = get_field('reason_2_title');
   $reason_2_desc          = get_field('reason_2_description');
 
+  $who_feature_image      = get_field('who_feature_image');
+  $who_section_title      = get_field('who_section_title');
+  $who_section_body       = get_field('who_section_body');
+
 
   get_header();
 ?>
@@ -132,35 +136,24 @@
     <div class="container">
 
       <div class="section-header">
-        <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-pad.png" alt="Pad and pencil">
-        <h2>Who should take this course</h2>
+        
+        <?php 
+
+          if ( !empty($who_feature_image) ) {
+              ?>
+
+            <img src="<?php echo $who_feature_image['url']; ?>" alt="<?php echo $who_feature_image['alt'] ?>">
+        
+        <?php
+          }
+        ?>
+
+        <h2><?php echo $who_section_title; ?></h2>
       </div>
 
       <div class="row">
         <div class="col-sm-8 offset-sm-2">
-          <h3>Graphics &amp; Web Designers</h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis, cumque quam sunt, aperiam inventore
-            nulla molestiae explicabo porro blanditiis praesentium consectetur! Dolorum quam hic eius natus nobis,
-            assumenda doloribus sint!</p>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat earum officiis tempora omnis quidem aut,
-            libero, vel exercitationem natus voluptates velit, molestias dicta animi consequatur odit voluptas
-            perspiciatis voluptatum reiciendis!</p>
-
-          <h3>Entrepreneurs</h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis, cumque quam sunt, aperiam inventore
-            nulla molestiae explicabo porro blanditiis praesentium consectetur! Dolorum quam hic eius natus nobis,
-            assumenda doloribus sint!</p>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat earum officiis tempora omnis quidem aut,
-            libero, vel exercitationem natus voluptates velit, molestias dicta animi consequatur odit voluptas
-            perspiciatis voluptatum reiciendis!</p>
-
-          <h3>Code Hobbyists</h3>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veritatis, cumque quam sunt, aperiam inventore
-            nulla molestiae explicabo porro blanditiis praesentium consectetur! Dolorum quam hic eius natus nobis,
-            assumenda doloribus sint!</p>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat earum officiis tempora omnis quidem
-            aut, libero, vel exercitationem natus voluptates velit, molestias dicta animi consequatur odit voluptas
-            perspiciatis voluptatum reiciendis!</p>
+          <?php echo $who_section_body; ?>
         </div>
       </div>
 
