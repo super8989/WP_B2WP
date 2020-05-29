@@ -15,24 +15,35 @@
 
 
   // Advanced Custom Fields
-  $income_feature_image   = get_field('income_feature_image');
-  $income_section_title   = get_field('income_section_title');
-  $income_section_desc    = get_field('income_section_description');
-  $reason_1_title         = get_field('reason_1_title');
-  $reason_1_desc          = get_field('reason_1_description');
-  $reason_2_title         = get_field('reason_2_title');
-  $reason_2_desc          = get_field('reason_2_description');
+  $income_feature_image         = get_field('income_feature_image');
+  $income_section_title         = get_field('income_section_title');
+  $income_section_desc          = get_field('income_section_description');
+  $reason_1_title               = get_field('reason_1_title');
+  $reason_1_desc                = get_field('reason_1_description');
+  $reason_2_title               = get_field('reason_2_title');
+  $reason_2_desc                = get_field('reason_2_description');
 
-  $who_feature_image      = get_field('who_feature_image');
-  $who_section_title      = get_field('who_section_title');
-  $who_section_body       = get_field('who_section_body');
+  $who_feature_image            = get_field('who_feature_image');
+  $who_section_title            = get_field('who_section_title');
+  $who_section_body             = get_field('who_section_body');
 
-  $features_section_image = get_field('features_section_image');
-  $features_section_title = get_field('features_section_title');
-  $features_section_body  = get_field('features_section_body');
+  $features_section_image       = get_field('features_section_image');
+  $features_section_title       = get_field('features_section_title');
+  $features_section_body        = get_field('features_section_body');
 
-  $project_feature_title = get_field('project_feature_title');
-  $project_feature_body = get_field('project_feature_body');
+  $project_feature_title        = get_field('project_feature_title');
+  $project_feature_body         = get_field('project_feature_body');
+
+  $instructor_section_title     = get_field('instructor_section_title');
+  $instructor_name              = get_field('instructor_name');
+  $bio_excerpt                  = get_field('bio_excerpt');
+  $full_bio                     = get_field('full_bio');
+  $twitter_username             = get_field('twitter_username');
+  $facebook_username            = get_field('facebook_username');
+  $linkedin_username            = get_field('linkedin_username');
+  $num_students                 = get_field('num_students');
+  $num_reviews                  = get_field('num_reviews');
+  $num_courses                  = get_field('num_courses');
 
 
   get_header();
@@ -328,20 +339,26 @@
         <div class="col-sm-8">
           <div class="row">
             <div class="col-lg-8">
-              <h2>Your Instructor <small>Sir Fake Elvis</small></h2>
+              <h2><?php echo $instructor_section_title ?> <small><?php echo $instructor_name; ?></small></h2>
             </div>
             <div class="col-lg-4">
-              <a href="/" class='badge social twitter'><i class="fa fa-twitter"></i></a>
-              <a href="/" class='badge social facebook'><i class="fa fa-facebook"></i></a>
-              <a href="/" class='badge social linkedin'><i class="fa fa-linkedin"></i></a>
+              <?php if ( !empty($twitter_username) ) { ?>
+                <a href="https://twitter.com/<?php echo $twitter_username ?>" class='badge social twitter'><i class="fa fa-twitter"></i></a>
+              <?php } ?>
+
+              <?php if ( !empty($facebook_username ) ) { ?>
+                <a href="https://facebook.com/<?php echo $facebook_username; ?>" class='badge social facebook'><i class="fa fa-facebook"></i></a>
+              <?php } ?>
+
+              <?php if ( !empty($linkedin_username) ) { ?>
+                <a href="https://linkedin.com/<?php echo $linkedin_username; ?>" class='badge social linkedin'><i class="fa fa-linkedin"></i></a>
+              <?php } ?>
             </div>
           </div>
 
-          <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque eligendi possimus enim excepturi necessitatibus, eius ducimus molestiae illo incidunt consequatur perferendis cumque facere? Nobis eaque cum dolores quos eligendi perspiciatis!</p>
+          <p class="lead"><?php echo $bio_excerpt ?></p>
 
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, dolores. Accusantium aliquid architecto dolor dignissimos dolore, quod est. Dignissimos rem corporis accusantium quidem asperiores sit consequatur officiis, eaque maxime error!</p>
-
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, dolores. Accusantium aliquid architecto dolor dignissimos dolore, quod est. Dignissimos rem corporis accusantium quidem asperiores sit consequatur officiis, eaque maxime error!</p>
+          <?php echo $full_bio; ?>
 
           <hr>
 
@@ -351,21 +368,21 @@
             <div class="col-4">
               <div class="num">
                 <div class="num-content">
-                  41,000+ <span>students</span>
+                  <?php echo $num_students; ?> <span>students</span>
                 </div>
               </div>
             </div>
             <div class="col-4">
               <div class="num">
                 <div class="num-content">
-                  600 <span>reviews</span>
+                  <?php echo $num_reviews; ?> <span>reviews</span>
                 </div>
               </div>
             </div>
             <div class="col-4">
               <div class="num">
                 <div class="num-content">
-                  8 <span>courses</span>
+                  <?php echo $num_courses; ?> <span>courses</span>
                 </div>
               </div>
             </div>
