@@ -29,7 +29,10 @@
 
   $features_section_image = get_field('features_section_image');
   $features_section_title = get_field('features_section_title');
-  $features_section_body = get_field('features_section_body');
+  $features_section_body  = get_field('features_section_body');
+
+  $project_feature_title = get_field('project_feature_title');
+  $project_feature_body = get_field('project_feature_body');
 
 
   get_header();
@@ -173,9 +176,7 @@
 
         <?php if ( !empty($features_section_image) ) {
         ?>
-
           <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-rocket.png" alt="Rocket">
-        
         <?php
           }
         ?>
@@ -215,34 +216,36 @@
           } 
         ?>
 
-        <!-- <div class="col-lg-2 col-md-6">
-          <i class="ci ci-computer"></i>
-          <h4>Lifetime access to lectures</h4>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <i class="ci ci-watch"></i>
-          <h4>10+ hours of content</h4>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <i class="ci ci-calendar"></i>
-          <h4>30-day moneyback guarantee</h4>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <i class="ci ci-community"></i>
-          <h4>Access to community of students</h4>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <i class="ci ci-instructor"></i>
-          <h4>Direct access to instructor</h4>
-        </div>
-        <div class="col-lg-2 col-md-6">
-          <i class="ci ci-device"></i>
-          <h4>Accessible content on any devices</h4>
-        </div> -->
+        <!-- removed
+          <div class="col-lg-2 col-md-6">
+            <i class="ci ci-computer"></i>
+            <h4>Lifetime access to lectures</h4>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <i class="ci ci-watch"></i>
+            <h4>10+ hours of content</h4>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <i class="ci ci-calendar"></i>
+            <h4>30-day moneyback guarantee</h4>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <i class="ci ci-community"></i>
+            <h4>Access to community of students</h4>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <i class="ci ci-instructor"></i>
+            <h4>Direct access to instructor</h4>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <i class="ci ci-device"></i>
+            <h4>Accessible content on any devices</h4>
+          </div>
+        removed -->
 
       </div>
 
-    </div>
+    </>
 
   </section>
 
@@ -250,25 +253,53 @@
   <section id='project-features'>
     <div class="container">
 
-      <h2>Final Project Features</h2>
-      <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum animi voluptate laborum quaerat reprehenderit, tenetur quidem aperiam enim eos voluptatum?</p>
+      <h2><?php echo $project_feature_title;  ?></h2>
+      <p class="lead"><?php echo $project_feature_body; ?></p>
 
       <div class="row">
-        <div class="col-sm-4">
-          <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-design.png" alt="Design">
-          <h3>Modern Design</h3>
-          <p>Work with a modern, professional quality design layout</p>
-        </div>
-        <div class="col-sm-4">
-          <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-code.png" alt="code">
-          <h3>Quality Code</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, vel.</p>
-        </div>
-        <div class="col-sm-4">
-          <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-cms.png" alt="cms">
-          <h3>Easy to Use</h3>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, quo?</p>
-        </div>
+
+        <?php $loop = new WP_Query( 
+          array(
+            'post_type' => 'project_feature',
+            'orderby'   => 'post_id',
+            'order'     => 'ASC'
+          ));
+          
+          while ( $loop->have_posts() ) {
+            $loop->the_post();
+
+        ?>
+          <div class="col-sm-4">
+            <?php if ( has_post_thumbnail() ) {
+              the_post_thumbnail();
+              } 
+            ?>
+
+            <h3><?php the_title(); ?></h3>
+            <p><?php the_content(); ?></p>
+          </div>
+
+        <?php 
+          }
+         ?>
+
+        <!-- removed
+          <div class="col-sm-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-design.png" alt="Design">
+            <h3>Modern Design</h3>
+            <p>Work with a modern, professional quality design layout</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-code.png" alt="code">
+            <h3>Quality Code</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates, vel.</p>
+          </div>
+          <div class="col-sm-4">
+            <img src="<?php bloginfo('stylesheet_directory'); ?>/assets/img/icon-cms.png" alt="cms">
+            <h3>Easy to Use</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, quo?</p>
+          </div>
+        removed -->
       </div>
       
     </div>
