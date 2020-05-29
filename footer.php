@@ -35,7 +35,7 @@
       <div class="row">
       <div class="col-sm-3 align-self-center">
         <p>
-          <a href="/"><img src="assets/img/logo.png" alt="Bootstrap to Wordpress"></a>
+          <a href="/"><img src="<?php bloginfo('stylesheet_directory') ?>/assets/img/logo.png" alt="Bootstrap to Wordpress"></a>
         </p>
       </div>
       <div class="col-sm-6">
